@@ -1,0 +1,19 @@
+version = "development"
+protocol = "http"
+pkg_root = "src/franklin"
+
+[migration]
+file_path = "migration"
+
+[server]
+addr = ":8099"
+
+[database]
+name = "telemetry"
+user = "fetchdb"
+password = "robotics"
+host = "localhost"
+port = "5432"
+ssl_mode = "disable"
+pool_size = 90
+file ="sqlite3.db"
