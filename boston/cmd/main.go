@@ -34,6 +34,13 @@ var migrateCmd = &cobra.Command{
 	RunE:  runMigrate,
 }
 
+var serveCmd = &cobra.Command{
+	Use: "serve",
+	Short: "Serve the server",
+	RunE: startServer,
+
+}
+
 // Execute is called when main is executed. This is a required function for cobra to run.
 func Execute() {
 	// Declare flags for each command
@@ -41,7 +48,12 @@ func Execute() {
 		Flags().
 		String("conf", "conf/development", "Directory in which to find the application.toml file.")
 
+	serveCmd.
+		Flags().
+		String("conf", "conf/development", "Directory in which to find the application.toml file.")
+
 	rootCmd.AddCommand(migrateCmd)
+	rootCmd.AddCommand(serveCmd)
 
 	if err := rootCmd.Execute(); err != nil {
 		logrus.Error(err)

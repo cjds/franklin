@@ -2,8 +2,8 @@
 
 package main
 
-import "franklin/cmd"
+import "franklin/boston/cmd"
 
 func main() {
-		cmd.Execute()
+	cmd.Execute()
 }

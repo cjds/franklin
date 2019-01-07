@@ -19,8 +19,11 @@ COPY . /$REPOSITORY
 
 FROM src_$SOURCE_STAGE AS stageforcopy
 
-FROM golang:latest
 
+FROM golang:latest as dev_env_stage
+RUN DEBIAN_FRONTEND=noninteractive  apt-get update -y && apt-get install vim byobu -y
+
+FROM dev_env_stage
 ARG REPOSITORY=franklin
 COPY --from=stageforcopy /$REPOSITORY /go/src/$REPOSITORY
 RUN go get -u github.com/golang/dep/cmd/dep
@@ -29,4 +32,5 @@ RUN DEBIAN_FRONTEND=noninteractive  apt-get update -y && apt-get install npm bui
 
 WORKDIR /go/src/$REPOSITORY
 RUN cd ui && npm install
-RUN dep ensure
+RUN pip install -r requirements.txt
+RUN cd boston && dep ensure

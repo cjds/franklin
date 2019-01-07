@@ -1,6 +1,6 @@
 version = "development"
 protocol = "http"
-pkg_root = "src/franklin"
+pkg_root = "src/franklin/boston"
 
 [migration]
 file_path = "migration"
